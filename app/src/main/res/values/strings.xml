@@ -1,0 +1,8 @@
+<resources>
+    <string name="app_name">LoginAplication</string>
+    <string name="error_mes_field_empty">Pole puste</string>
+    <string name="error_mes_input_too_short">Pin jest za któtki</string>
+    <string name="error_mes_input_too_long">Pin jest za długi</string>
+    <string name="error_mes_pin_incorrect">Pin jest niepoprawny</string>
+
+</resources>
