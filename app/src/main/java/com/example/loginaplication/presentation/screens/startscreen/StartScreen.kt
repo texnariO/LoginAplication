@@ -26,6 +26,8 @@ import androidx.compose.ui.unit.sp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
 import com.example.loginaplication.R
+import com.example.loginaplication.presentation.util.navigation.Routes
+import com.example.loginaplication.ui.theme.LightBlue
 
 @Composable
 fun StartScreen(
@@ -45,7 +47,13 @@ fun StartScreen(
             Toast.makeText(context, errorMessage, Toast.LENGTH_SHORT).show()
             viewModel.onEvent(StartEvent.ClearError)
         }
-
+    }
+    LaunchedEffect(state.value.startNext ){
+        state.value.startNext?.let{ startNext ->
+            if(startNext == StartState.StartNext.goToNextWindow){
+                navController.navigate("user_screen/${state.value.idUser}/${state.value.nameUser}")
+            }
+        }
     }
     Column(
         modifier = Modifier
@@ -56,7 +64,7 @@ fun StartScreen(
     ){
         //ToDO delete basic text
         BasicText(
-            text = "",
+            text = state.value.pinUser.replace(Regex("."), "*"),
             style = TextStyle(
                 fontSize = 36.sp,
                 fontWeight = FontWeight.Bold,
@@ -69,7 +77,7 @@ fun StartScreen(
             listOf("1","2","3"),
             listOf("4","5","6"),
             listOf("7","8","9"),
-            listOf("X","0","→")
+            listOf("X","0","->")
         )
 
         buttons.forEach{row ->
@@ -80,7 +88,7 @@ fun StartScreen(
                 row.forEach{text ->
                     KeypadButton(text){
                         when(text){
-                            "→" -> viewModel.onEvent(StartEvent.Login)
+                            "->" -> viewModel.onEvent(StartEvent.Login)
                             else -> viewModel.onEvent(StartEvent.EnteredPin(text))
                         }
                     }
@@ -103,7 +111,7 @@ fun KeypadButton(text: String, onClick: ()->Unit) {
     ){
         BasicText(
             text = text,
-            style = TextStyle(fontSize = 24.sp, color = MaterialTheme.colorScheme.primary)
+            style = TextStyle(fontSize = 24.sp, color = if(text=="->") LightBlue else {if (text == "X") Color.Red else MaterialTheme.colorScheme.primary})
             )
     }
 }
