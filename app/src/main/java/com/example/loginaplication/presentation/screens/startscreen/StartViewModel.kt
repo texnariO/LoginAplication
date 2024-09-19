@@ -74,7 +74,6 @@ class StartViewModel @Inject constructor(): ViewModel(){
                 Log.d("UserViewModel", "Received response: $response")
                 if(response.isSuccessful)
                 {
-
                     _state.value = _state.value.copy(
                         idUser = response.body()!!.id,
                         nameUser = response.body()!!.name,

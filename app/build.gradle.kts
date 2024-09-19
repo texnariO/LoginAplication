@@ -94,11 +94,8 @@ dependencies {
     implementation ("androidx.lifecycle:lifecycle-runtime-ktx:2.4.0")
 
     implementation("org.jetbrains.kotlinx:kotlinx-datetime:0.4.0")
-    val camerax_version = "1.0.1"
-    implementation ("androidx.camera:camera-core:$camerax_version")
-    implementation ("androidx.camera:camera-camera2:$camerax_version")
-    implementation ("androidx.camera:camera-lifecycle:$camerax_version")
-    implementation ("androidx.camera:camera-view:1.0.0-alpha24")
-    implementation ("androidx.camera:camera-extensions:$camerax_version")
+    implementation ("androidx.activity:activity-compose:1.3.1")
+    implementation ("androidx.compose.material:material:1.0.4")
+    implementation ("androidx.compose.ui:ui:1.0.4")
 
 }
